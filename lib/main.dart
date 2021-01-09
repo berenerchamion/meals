@@ -28,16 +28,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Text('Navigation Time!')
-      ),
+      body: Center(child: Text('Navigation Time!')),
     );
   }
 }
