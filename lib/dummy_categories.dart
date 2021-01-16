@@ -43,4 +43,24 @@ const DUMMY_CATEGORIES = const [
     title: 'Hamburgers',
     color: Colors.brown,
   ),
+  Category(
+    id: 'c8',
+    title: 'Fun Food',
+    color: Colors.amber,
+  ),
+  Category(
+    id: 'c9',
+    title: 'Fast Food',
+    color: Colors.deepPurple,
+  ),
+  Category(
+    id: 'c10',
+    title: 'Grill Food',
+    color: Colors.cyan,
+  ),
+  Category(
+    id: 'c11',
+    title: 'Seafood',
+    color: Colors.greenAccent,
+  ),
 ];
