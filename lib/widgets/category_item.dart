@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import './category_meals_screen.dart';
+import '../models/category.dart';
 
 class CategoryItem extends StatelessWidget {
-  final String title;
-  final Color color;
 
-  CategoryItem(this.title, this.color);
+  final Category category;
+
+  CategoryItem(this.category);
 
   void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CategoryMealsScreen();
-    },),);
+    Navigator.of(ctx).pushNamed(
+      '/category-meals',
+      arguments:
+        this.category,
+    );
   }
 
   @override
@@ -26,8 +27,8 @@ class CategoryItem extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              color.withOpacity(0.7),
-              color,
+              category.color.withOpacity(0.7),
+              category.color,
             ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
@@ -35,7 +36,7 @@ class CategoryItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ), //BoxDecoration
         child: Text(
-          title,
+          category.title,
           style: Theme.of(context).textTheme.headline6,
         ),
       ),
