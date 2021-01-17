@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './models/category.dart';
+import '../models/category.dart';
 
 const DUMMY_CATEGORIES = const [
   Category(
@@ -10,56 +10,66 @@ const DUMMY_CATEGORIES = const [
   ),
   Category(
     id: 'c2',
-    title: 'Chinese',
-    color: Colors.lightBlue,
-  ),
-  Category(
-    id: 'c3',
-    title: 'American',
+    title: 'Quick & Easy',
     color: Colors.red,
   ),
   Category(
-    id: 'c4',
-    title: 'French',
+    id: 'c3',
+    title: 'Hamburgers',
     color: Colors.orange,
+  ),
+  Category(
+    id: 'c4',
+    title: 'German',
+    color: Colors.amber,
   ),
   Category(
     id: 'c5',
-    title: 'Scottish',
-    color: Colors.blueGrey,
+    title: 'Light & Lovely',
+    color: Colors.blue,
   ),
   Category(
     id: 'c6',
-    title: 'Mexican',
-    color: Colors.yellow,
+    title: 'Exotic',
+    color: Colors.green,
   ),
   Category(
     id: 'c7',
-    title: 'Pizza',
-    color: Colors.orange,
-  ),
-  Category(
-    id: 'c7',
-    title: 'Hamburgers',
-    color: Colors.brown,
+    title: 'Breakfast',
+    color: Colors.lightBlue,
   ),
   Category(
     id: 'c8',
+    title: 'Asian',
+    color: Colors.lightGreen,
+  ),
+  Category(
+    id: 'c9',
+    title: 'French',
+    color: Colors.pink,
+  ),
+  Category(
+    id: 'c10',
+    title: 'Summer',
+    color: Colors.teal,
+  ),
+  Category(
+    id: 'c11',
     title: 'Fun Food',
     color: Colors.amber,
   ),
   Category(
-    id: 'c9',
+    id: 'c12',
     title: 'Fast Food',
     color: Colors.deepPurple,
   ),
   Category(
-    id: 'c10',
+    id: 'c13',
     title: 'Grill Food',
     color: Colors.cyan,
   ),
   Category(
-    id: 'c11',
+    id: 'c14',
     title: 'Seafood',
     color: Colors.greenAccent,
   ),
