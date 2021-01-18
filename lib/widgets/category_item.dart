@@ -13,7 +13,7 @@ class CategoryItem extends StatelessWidget {
     Navigator.of(ctx).pushNamed(
       CategoryMealsScreen.routeName,
       arguments:
-        this.category,
+        this.category
     );
   }
 

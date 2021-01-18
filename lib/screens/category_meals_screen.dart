@@ -11,22 +11,25 @@ class CategoryMealsScreen extends StatelessWidget {
     final routeArgs = ModalRoute.of(context).settings.arguments as Category;
     final categoryTitle = routeArgs.title;
     final categoryId = routeArgs.id;
+    final categoryColor = routeArgs.color;
     final categoryMeals = DUMMY_MEALS.where((meal) {
       return meal.categories.contains(categoryId);
     }).toList();
     return Scaffold(
       appBar: AppBar(
-        title: Text('The ${routeArgs.title} Recipies'),
-        backgroundColor: routeArgs.color,
+        title: Text('The $categoryTitle Recipies'),
+        backgroundColor: categoryColor,
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
+            id: categoryMeals[index].id,
             title: categoryMeals[index].title,
             imageUrl: categoryMeals[index].imageUrl,
             duration: categoryMeals[index].duration,
             complexity: categoryMeals[index].complexity,
             affordability: categoryMeals[index].affordability,
+            currentCategory: routeArgs,
           );
         },
         itemCount: categoryMeals.length,
