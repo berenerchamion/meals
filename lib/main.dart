@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Beren\'s Meals',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
-        accentColor: Colors.teal,
+        accentColor: Color.fromRGBO(53, 129, 184, .20),
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Raleway',
