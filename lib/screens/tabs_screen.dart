@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:meals/screens/favorites_screen.dart';
+import '../screens/favorites_screen.dart';
 import './categories_screen.dart';
+import '../widgets/meals_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+  static const String routeName = '/';
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -18,6 +20,22 @@ class _TabsScreenState extends State<TabsScreen> {
         appBar: AppBar(
           title: Text('Beren\'s Meals'),
           bottom: TabBar(
+            indicator: BoxDecoration(
+              color: Colors.deepPurpleAccent,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.black26,
+                ),
+                left: BorderSide(
+                  color: Colors.black26,
+                ),
+                right: BorderSide(
+                  color: Colors.black26,
+                ),
+              ),
+            ),
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.grey,
             labelPadding: EdgeInsets.all(0),
             tabs: <Widget>[
               Tab(
@@ -29,8 +47,9 @@ class _TabsScreenState extends State<TabsScreen> {
             ],
           ),
         ),
+        drawer: MealsDrawer(),
         body: TabBarView(
-          children: <Widget> [
+          children: <Widget>[
             CategoriesScreen(),
             FavoritesScreen(),
           ],
