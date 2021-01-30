@@ -15,13 +15,19 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   List <Meal> currentMeals;
   Category category;
+  bool _loadedInitData = false;
 
-  void initState() {
-    this.category = ModalRoute.of(context).settings.arguments as Category;
-    this.currentMeals = DUMMY_MEALS.where((meal) {
-      return meal.categories.contains(category.id);
-    }).toList();
-    super.initState();
+  @override
+  void didChangeDependencies() {
+    if (_loadedInitData == false) {
+      this.category = ModalRoute.of(context).settings.arguments as Category;
+      this.currentMeals = DUMMY_MEALS.where((meal) {
+        return meal.categories.contains(category.id);
+      }).toList();
+      _loadedInitData = true;
+    }
+
+    super.didChangeDependencies();
   }
 
   void _removeMeal(String mealId) {
