@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
+import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 import '../data/dummy_meals.dart';
 
@@ -11,33 +12,46 @@ class CategoryMealsScreen extends StatefulWidget {
 }
 
 class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
+
+  List <Meal> currentMeals;
+  Category category;
+
+  void initState() {
+    this.category = ModalRoute.of(context).settings.arguments as Category;
+    this.currentMeals = DUMMY_MEALS.where((meal) {
+      return meal.categories.contains(category.id);
+    }).toList();
+    super.initState();
+  }
+
+  void _removeMeal(String mealId) {
+    setState(() {
+      currentMeals.removeWhere((meal) => meal.id == mealId);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final routeArgs = ModalRoute.of(context).settings.arguments as Category;
-    final categoryTitle = routeArgs.title;
-    final categoryId = routeArgs.id;
-    final categoryColor = routeArgs.color;
-    final categoryMeals = DUMMY_MEALS.where((meal) {
-      return meal.categories.contains(categoryId);
-    }).toList();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('The $categoryTitle Recipies'),
-        backgroundColor: categoryColor,
+        title: Text('The ${category.title} Recipies'),
+        backgroundColor: category.color,
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
-            id: categoryMeals[index].id,
-            title: categoryMeals[index].title,
-            imageUrl: categoryMeals[index].imageUrl,
-            duration: categoryMeals[index].duration,
-            complexity: categoryMeals[index].complexity,
-            affordability: categoryMeals[index].affordability,
-            currentCategory: routeArgs,
+            id: currentMeals[index].id,
+            title: currentMeals[index].title,
+            imageUrl: currentMeals[index].imageUrl,
+            duration: currentMeals[index].duration,
+            complexity: currentMeals[index].complexity,
+            affordability: currentMeals[index].affordability,
+            currentCategory: category,
+            removeMeal: _removeMeal,
           );
         },
-        itemCount: categoryMeals.length,
+        itemCount: currentMeals.length,
       ),
     );
   }
