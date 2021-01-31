@@ -5,9 +5,6 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Meal Favorites'),
-      ),
       body: Column(
         children: <Widget> [
           Text('Here are some favorites...')

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/meals_drawer.dart';
+import '../widgets/filter_item.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const String routeName = '/filters';
@@ -32,53 +33,48 @@ class _FiltersScreenState extends State<FiltersScreen> {
           ), //Container
           Expanded(
             child: ListView(
-              children: <Widget> [
-                SwitchListTile(
-                  title: Text('Gluten Free'),
-                  subtitle: Text('Include gluten free meals.'),
-                  value: _glutenFree,
-                  activeColor: Theme.of(context).primaryColor,
-                  onChanged: (newValue){
-                    setState((){
+              children: <Widget>[
+                FilterItem(
+                  'Gluten Free',
+                  'Include gluten free meals.',
+                  _glutenFree,
+                  (newValue) {
+                    setState(() {
                       _glutenFree = newValue;
                     });
                   },
                 ),
-                SwitchListTile(
-                  title: Text('Vegetarian'),
-                  subtitle: Text('Include vegetarian meals.'),
-                  value: _vegetarian,
-                  activeColor: Theme.of(context).primaryColor,
-                  onChanged: (newValue){
-                    setState((){
+                FilterItem(
+                  'Vegetarian',
+                  'Include vegetarian meals.',
+                  _vegetarian,
+                  (newValue) {
+                    setState(() {
                       _vegetarian = newValue;
                     });
                   },
                 ),
-                SwitchListTile(
-                  title: Text('Vegan'),
-                  subtitle: Text('Include gluten free meals.'),
-                  value: _vegan,
-                  activeColor: Theme.of(context).primaryColor,
-                  onChanged: (newValue){
-                    setState((){
+                FilterItem(
+                  'Vegan',
+                  'Include gluten free meals.',
+                  _vegan,
+                  (newValue) {
+                    setState(() {
                       _vegan = newValue;
                     });
                   },
                 ),
-                SwitchListTile(
-                  title: Text('Lactose Free'),
-                  subtitle: Text('Include gluten free meals.'),
-                  value: _lactoseFree,
-                  activeColor: Theme.of(context).primaryColor,
-                  onChanged: (newValue){
-                    setState((){
+                FilterItem(
+                  'Lactose Free',
+                  'Include gluten free meals.',
+                  _lactoseFree,
+                  (newValue) {
+                    setState(() {
                       _lactoseFree = newValue;
                     });
                   },
                 ),
               ],
-
             ), //ListView
           ), //Container
         ],
