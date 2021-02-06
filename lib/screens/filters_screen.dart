@@ -2,24 +2,41 @@ import 'package:flutter/material.dart';
 import '../widgets/meals_drawer.dart';
 import '../widgets/filter_item.dart';
 
-class FiltersScreen extends StatefulWidget {
+class FiltersScreen extends StatefulWidget{
   static const String routeName = '/filters';
+  final Function updateFilters;
+
+  FiltersScreen (this.updateFilters);
 
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  bool _glutenFree = true;
-  bool _vegetarian = true;
-  bool _vegan = true;
-  bool _lactoseFree = true;
+  bool _glutenFree = false;
+  bool _vegetarian = false;
+  bool _vegan = false;
+  bool _lactoseFree = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Meal Filters'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.save_rounded),
+            onPressed: () {
+              final selectedFilters = {
+              'glutenFree': _glutenFree,
+              'lactoseFree': _lactoseFree,
+              'vegan': _vegan,
+              'vegetarian': _vegetarian,
+              };
+              widget.updateFilters();
+            },
+          ),
+        ],
       ),
       drawer: MealsDrawer(),
       body: Column(
