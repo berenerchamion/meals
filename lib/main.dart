@@ -28,15 +28,17 @@ class _MyAppState extends State<MyApp> {
 
   List <Meal> _availableMeals = DUMMY_MEALS;
 
+  List <Meal> _favoriteMeals = [];
+
   void _setFilters (Map<String, bool> filterData){
     setState(() {
       _filters = filterData;
 
       _availableMeals = DUMMY_MEALS.where((meal){
-        if (_filters['gluten'] && !meal.isGlutenFree) {
+        if (_filters['glutenFree'] && !meal.isGlutenFree) {
           return false;
         }
-        else if (_filters['lactose'] && !meal.isLactoseFree) {
+        else if (_filters['lactoseFree'] && !meal.isLactoseFree) {
         return false;
         }
         else if (_filters['vegan'] && !meal.isVegan) {
@@ -49,6 +51,19 @@ class _MyAppState extends State<MyApp> {
           return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingMealIndex = _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+
+    if (existingMealIndex >= 0) {
+      _favoriteMeals.removeAt(existingMealIndex);
+    }
+    else {
+      setState(() {
+        _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
   }
 
   @override
@@ -75,12 +90,12 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
       ),
-      home: TabsScreen(),
+      home: TabsScreen(_favoriteMeals),
       routes: {
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
-        FavoritesScreen.routeName: (ctx) => FavoritesScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
+        FavoritesScreen.routeName: (ctx) => FavoritesScreen(_favoriteMeals),
       },
     );
   }
